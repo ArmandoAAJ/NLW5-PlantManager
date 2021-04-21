@@ -8,6 +8,7 @@ import {
 
 import { Welcome } from "./src/pages/Home/Index";
 import { User } from "./src/pages/User/Index";
+import { Confirmation } from "./src/pages/Confirmation/Index";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -19,5 +20,5 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <User />;
+  return <Confirmation />;
 }
