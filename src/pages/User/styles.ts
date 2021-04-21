@@ -62,7 +62,7 @@ export const Footer = styled.View`
   padding-horizontal: 20px;
 `;
 
-export const Keyboard = styled.KeyboardAvoidingView`
+export const KeyboardStyled = styled.KeyboardAvoidingView`
   flex: 1;
   width: 100%;
   align-items: center;

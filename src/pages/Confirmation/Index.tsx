@@ -23,7 +23,7 @@ export const Confirmation: React.FC = () => {
             paltinhas com muito cuidado
           </SubTitle>
           <Footer>
-            <Button />
+            <Button title="Começar" />
           </Footer>
         </Content>
       </Keyboard>

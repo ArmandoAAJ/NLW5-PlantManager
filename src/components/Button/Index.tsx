@@ -1,12 +1,15 @@
 import React from "react";
-
+import { TouchableOpacityProps } from "react-native";
 import { ButtonTouchable, Text } from "./styles";
 
-export const Button: React.FC = ({ children, ...rest }) => {
+interface ButtonProps extends TouchableOpacityProps {
+  title: string;
+}
+
+export const Button = ({ title, ...rest }: ButtonProps) => {
   return (
     <ButtonTouchable {...rest}>
-      <Text>Confirmar</Text>
-      {children}
+      <Text>{title}</Text>
     </ButtonTouchable>
   );
 };

@@ -40,7 +40,7 @@ export const TextBottom = styled.Text`
 export const Image = styled.Image.attrs({
   source: image,
 })`
-  height: ${Dimensions.get("window").width * 0.7};
+  height: ${Dimensions.get("window").width * 0.7}px;
 `;
 
 export const Buttom = styled.TouchableOpacity`

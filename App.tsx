@@ -6,9 +6,7 @@ import {
   Jost_600SemiBold,
 } from "@expo-google-fonts/jost";
 
-import { Welcome } from "./src/pages/Home/Index";
-import { User } from "./src/pages/User/Index";
-import { Confirmation } from "./src/pages/Confirmation/Index";
+import { Routes } from "./src/routes/index";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,5 +18,5 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <Confirmation />;
+  return <Routes />;
 }
