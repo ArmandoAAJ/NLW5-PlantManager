@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { Platform } from "react-native";
 import { Button } from "../../components/Button/Index";
 import {
@@ -12,6 +13,7 @@ import {
 } from "./styles";
 
 export const Confirmation: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <Container>
       <Keyboard behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -23,7 +25,10 @@ export const Confirmation: React.FC = () => {
             paltinhas com muito cuidado
           </SubTitle>
           <Footer>
-            <Button title="Começar" />
+            <Button
+              title="Começar"
+              onPress={() => navigation.navigate("Plant")}
+            />
           </Footer>
         </Content>
       </Keyboard>
