@@ -4,6 +4,8 @@ import fonts from "../../styles/fonts";
 
 export const Container = styled.View`
   flex: 1;
+  background-color: ${colors.background};
+  padding-top: 50px;
 `;
 
 export const ContainerList = styled.View`

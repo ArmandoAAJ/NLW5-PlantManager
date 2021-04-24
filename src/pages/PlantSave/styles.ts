@@ -4,9 +4,14 @@ import { SvgFromUri } from "react-native-svg";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
   justify-content: space-between;
+  background-color: ${colors.shape};
+`;
+
+export const ScrollView = styled.ScrollView`
+  flex: 1;
   background-color: ${colors.shape};
 `;
 

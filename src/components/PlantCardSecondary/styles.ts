@@ -43,3 +43,17 @@ export const TimeLabel = styled.Text`
   font-family: ${fonts.text};
   font-size: 16px;
 `;
+
+export const Content = styled.View``;
+
+export const ButtonSwipeable = styled(RectButton)`
+  width: 120px;
+  height: 85px;
+  background-color: ${colors.red};
+  margin-top: 15px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  padding-left: 10px;
+`;

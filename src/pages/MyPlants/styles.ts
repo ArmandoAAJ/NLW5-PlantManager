@@ -2,12 +2,12 @@ import styled from "styled-components/native";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: space-between;
-  margin: 0 20px;
-  padding-top: 50px;
+  padding: 0 20px;
+  padding-top: 20px;
   background-color: ${colors.background};
 `;
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { formatDistance } from "date-fns";
 import { pt } from "date-fns/locale";
 import { Header } from "../../components/Header/Index";
-import { loadPlant, PlantProps } from "../../libs/storage";
+import { loadPlant, PlantProps, removePlant } from "../../libs/storage";
 
 import waterdrop from "../../assets/waterdrop.png";
 
@@ -16,11 +17,34 @@ import {
   PlantTitle,
 } from "./styles";
 import { PlantCardSecondary } from "../../components/PlantCardSecondary/Index";
+import { Load } from "../../components/Load/Index";
 
 const MyPlants: React.FC = () => {
   const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [nextWaterd, setNextWaterd] = useState("");
+
+  const handleRemove = (plant: PlantProps) => {
+    Alert.alert("Remover", `Deseja remover a planta ${plant.name}?`, [
+      {
+        text: "Não 🤞",
+        style: "cancel",
+      },
+      {
+        text: "Sim 😪",
+        onPress: async () => {
+          try {
+            await removePlant(plant.id);
+            setMyPlants((oldData) =>
+              oldData.filter((item) => item.id !== plant.id)
+            );
+          } catch (error) {
+            Alert.alert("Tivemos problemas ao deletar a planta selecionada!!.");
+          }
+        },
+      },
+    ]);
+  };
 
   useEffect(() => {
     async function loadStorageDate() {
@@ -42,6 +66,8 @@ const MyPlants: React.FC = () => {
     loadStorageDate();
   }, []);
 
+  if (loading) return <Load />;
+
   return (
     <Container>
       <Header />
@@ -54,7 +80,12 @@ const MyPlants: React.FC = () => {
         <List
           data={myPlants}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <PlantCardSecondary data={item} />}
+          renderItem={({ item }) => (
+            <PlantCardSecondary
+              data={item}
+              onPress={() => handleRemove(item)}
+            />
+          )}
           showsVerticalScrollIndicator={false}
         />
       </Plants>

@@ -18,6 +18,7 @@ import {
   Alert,
   Time,
   TimeText,
+  ScrollView,
 } from "./styles";
 
 import waterdrop from "../../assets/waterdrop.png";
@@ -70,35 +71,40 @@ export const PlantSave = () => {
   };
 
   return (
-    <Container>
-      <PlantInfo>
-        <SVG uri={plant.photo} />
-        <PlantName>{plant.name}</PlantName>
-        <Description>{plant.about}</Description>
-      </PlantInfo>
-      <Content>
-        <TipPlant>
-          <Image source={waterdrop} />
-          <TipPlantText>{plant.water_tips}</TipPlantText>
-        </TipPlant>
-        <Alert>Escolha o melhor horário para ser lembrado</Alert>
-        {showDatePicker && (
-          <DateTimePicker
-            value={selectedDateTime}
-            mode="time"
-            display="spinner"
-            onChange={handleChangeTime}
-          />
-        )}
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Container>
+        <PlantInfo>
+          <SVG uri={plant.photo} />
+          <PlantName>{plant.name}</PlantName>
+          <Description>{plant.about}</Description>
+        </PlantInfo>
+        <Content>
+          <TipPlant>
+            <Image source={waterdrop} />
+            <TipPlantText>{plant.water_tips}</TipPlantText>
+          </TipPlant>
+          <Alert>Escolha o melhor horário para ser lembrado</Alert>
+          {showDatePicker && (
+            <DateTimePicker
+              value={selectedDateTime}
+              mode="time"
+              display="spinner"
+              onChange={handleChangeTime}
+            />
+          )}
 
-        {Platform.OS === "android" && (
-          <Time onPress={() => setShowDatePicker((oldState) => !oldState)}>
-            <TimeText>{`Mudar ${format(selectedDateTime, "HH:mm")}`}</TimeText>
-          </Time>
-        )}
+          {Platform.OS === "android" && (
+            <Time onPress={() => setShowDatePicker((oldState) => !oldState)}>
+              <TimeText>{`Mudar ${format(
+                selectedDateTime,
+                "HH:mm"
+              )}`}</TimeText>
+            </Time>
+          )}
 
-        <Button title="Cadastrar planta" onPress={handleSave} />
-      </Content>
-    </Container>
+          <Button title="Cadastrar planta" onPress={handleSave} />
+        </Content>
+      </Container>
+    </ScrollView>
   );
 };

@@ -23,7 +23,6 @@ export const Button = styled.TouchableOpacity`
 export const TextTop = styled.Text`
   font-size: 28px;
   font-family: ${fonts.heading};
-  font-weight: bold;
   text-align: center;
   color: ${colors.heading};
   margin-top: 30px;
