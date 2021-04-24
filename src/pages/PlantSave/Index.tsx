@@ -3,7 +3,7 @@ import { Platform, Alert as DateAlert } from "react-native";
 import { useRoute } from "@react-navigation/core";
 import DateTimePicker, { Event } from "@react-native-community/datetimepicker";
 import { isBefore, format } from "date-fns";
-import { PlantProps } from "../../libs/storage";
+import { plantSave, PlantProps } from "../../libs/storage";
 
 import {
   Container,
@@ -32,6 +32,17 @@ export const PlantSave = () => {
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === "ios");
   const route = useRoute();
   const { plant } = route.params as Plant;
+
+  const handleSave = async () => {
+    try {
+      await plantSave({
+        ...plant,
+        dateTimeNotification: selectedDateTime,
+      });
+    } catch {
+      DateAlert.alert("Não foi possível salvar!");
+    }
+  };
 
   const handleChangeTime = (event: Event, dateTime: Date | undefined) => {
     if (Platform.OS === "android") {
@@ -77,7 +88,7 @@ export const PlantSave = () => {
           </Time>
         )}
 
-        <Button title="Cadastrar planta" onPress={() => {}} />
+        <Button title="Cadastrar planta" onPress={handleSave} />
       </Content>
     </Container>
   );

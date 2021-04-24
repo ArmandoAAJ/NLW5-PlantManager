@@ -45,8 +45,8 @@ export const User: React.FC = () => {
     try {
       await AsyncStorage.setItem("@plantmanager:user", name);
       navigation.navigate("Confirmation");
-    } catch () {
-      Alert.alert('Não foi possível salvar seu nome.');
+    } catch {
+      Alert.alert("Não foi possível salvar seu nome.");
     }
   };
 
