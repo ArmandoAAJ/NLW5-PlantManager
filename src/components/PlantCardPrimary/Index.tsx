@@ -10,7 +10,7 @@ interface PlantProps {
 
 export const PlantCardPrimary = ({ data, ...rest }: PlantProps) => {
   return (
-    <Button>
+    <Button {...rest}>
       <SVG uri={data.photo} />
       <Title>{data.name}</Title>
     </Button>

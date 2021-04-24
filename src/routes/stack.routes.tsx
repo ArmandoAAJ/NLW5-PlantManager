@@ -5,6 +5,7 @@ import { Welcome } from "../pages/Welcome/Index";
 import { User } from "../pages/User/Index";
 import { Confirmation } from "../pages/Confirmation/Index";
 import { Plant } from "../pages/Plant/Index";
+import { PlantSave } from "../pages/PlantSave/Index";
 
 import colors from "../styles/colors";
 
@@ -24,6 +25,7 @@ export const AppRoutes: React.FC = () => {
       <stackRoutes.Screen name="User" component={User} />
       <stackRoutes.Screen name="Confirmation" component={Confirmation} />
       <stackRoutes.Screen name="Plant" component={Plant} />
+      <stackRoutes.Screen name="PlantSave" component={PlantSave} />
     </stackRoutes.Navigator>
   );
 };

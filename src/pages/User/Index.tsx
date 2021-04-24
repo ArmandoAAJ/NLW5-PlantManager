@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+} from "react-native";
 import { Button } from "../../components/Button/Index";
 import {
   Container,
@@ -35,6 +41,15 @@ export const User: React.FC = () => {
     setName(value);
   };
 
+  const handleSubmit = async () => {
+    try {
+      await AsyncStorage.setItem("@plantmanager:user", name);
+      navigation.navigate("Confirmation");
+    } catch () {
+      Alert.alert('Não foi possível salvar seu nome.');
+    }
+  };
+
   return (
     <Container>
       <KeyboardStyled behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -60,7 +75,7 @@ export const User: React.FC = () => {
                 <Button
                   disabled={name.length < 1}
                   title="Confirmar"
-                  onPress={() => navigation.navigate("Confirmation")}
+                  onPress={handleSubmit}
                 />
               </Footer>
             </Form>
