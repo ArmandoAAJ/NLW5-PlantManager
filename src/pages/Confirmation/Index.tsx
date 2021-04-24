@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Platform } from "react-native";
 import { Button } from "../../components/Button/Index";
 import {
@@ -12,22 +12,40 @@ import {
   Keyboard,
 } from "./styles";
 
-export const Confirmation: React.FC = () => {
+interface ConfirmationParams {
+  title: string;
+  subtitle: string;
+  buttonTitle: string;
+  icon: "smile" | "hug";
+  nextScreen: string;
+}
+
+const emojis = {
+  hug: "🤗",
+  smile: "😀",
+};
+
+export const Confirmation = () => {
+  const routes = useRoute();
+  const {
+    title,
+    subtitle,
+    buttonTitle,
+    icon,
+    nextScreen,
+  } = routes.params as ConfirmationParams;
   const navigation = useNavigation();
   return (
     <Container>
       <Keyboard behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <Content>
-          <TextEmoji>😀</TextEmoji>
-          <Title>Prontinho</Title>
-          <SubTitle>
-            Agora vamos comecar a cuidar das suas {"\n"}
-            paltinhas com muito cuidado
-          </SubTitle>
+          <TextEmoji>{emojis[icon]}</TextEmoji>
+          <Title>{title}</Title>
+          <SubTitle>{subtitle}</SubTitle>
           <Footer>
             <Button
-              title="Começar"
-              onPress={() => navigation.navigate("Plant")}
+              title={buttonTitle}
+              onPress={() => navigation.navigate(nextScreen)}
             />
           </Footer>
         </Content>
